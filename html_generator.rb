@@ -14,6 +14,8 @@ class HTMLGenerator
 	
 	end
 
+	private # Only available to methods within this class
+
 	def print_header
 		puts "<html>"
 		puts "	<head>"
