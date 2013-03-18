@@ -12,7 +12,7 @@ class HTMLGenerator
 		print_header
 		puts "<h1>All Products</h1>"
 		print_footer
-		products = retrieve_data
+		products = retrieve_data("http://lcboapi.com/products.json")
 		products.each do |product|
 			display_product(product)
 			display_product_info(product)
@@ -22,8 +22,8 @@ class HTMLGenerator
 
 	private # Only available to methods within this class
 
-	def retrieve_data()
-		response = open("http://lcboapi.com/products.json").read
+	def retrieve_data(url)
+		response = open(url).read
 		json_data = JSON.parse(response)
 		return json_data["result"]
 	end
