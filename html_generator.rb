@@ -4,18 +4,18 @@ class HTMLGenerator
 
 	def show
 		print_header
-		puts "Action: Show"
 		print_footer
 
 	end
 
 	def index
 		print_header
-		puts "Action: Index"
+		puts "<h1>All Products</h1>"
 		print_footer
 		products = retrieve_data
 		products.each do |product|
-			display_products(product)
+			display_product(product)
+			display_product_info(product)
 		end
 	
 	end
@@ -25,12 +25,23 @@ class HTMLGenerator
 	def retrieve_data()
 		response = open("http://lcboapi.com/products.json").read
 		json_data = JSON.parse(response)
-		return data["result"]
+		return json_data["result"]
 	end
 
-	def display_products
-		puts "<p>#{product['name']}</p>"
-		puts 
+	def display_product(product)
+		puts "<p><h2>#{product['name']}</h2></p>"
+		puts "<p><img src='#{product['image_thumb_url']}'></p>"
+	end
+
+	def display_product_info(product)
+		puts "		<ul>"
+		puts "			<li>Product ID: #{product['id']}</li>"
+		puts "			<li>Made by: #{product['producer_name']}</li>"
+		puts "			<li>Category: #{product['primary_category']}</li>"
+		puts "			<li>Secondary Category: #{product['secondary_category']}</li>"
+		puts "			<li>Size: #{product['package_unit_volume_in_milliliters']} mL</li>"
+		puts "			<li>Price: $#{(product['price_in_cents'].to_i/100.0)}</li>"
+		puts "		</ul>"
 	end
 
 	def print_header
