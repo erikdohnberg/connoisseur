@@ -1,4 +1,6 @@
 class HTMLGenerator
+	require "json"
+	require "open-uri"
 
 	def show
 		print_header
@@ -30,4 +32,11 @@ class HTMLGenerator
 		puts "	</body>"
 		puts "</html>"
 	end
+
+	def retrieve_data()
+		response = open("http://lcboapi.com/products.json").read
+		json_data = JSON.parse(response)
+
+	end
+
 end
