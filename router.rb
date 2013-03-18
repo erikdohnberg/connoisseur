@@ -1,3 +1,5 @@
+require_relative 'html_generator'
+
 # Access parameters passed into the app
 	
 # the 'argument verctor' array

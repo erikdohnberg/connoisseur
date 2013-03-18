@@ -1,11 +1,31 @@
 class HTMLGenerator
 
 	def show
+		print_header
 		puts "Action: Show"
+		print_footer
+
 	end
 
 	def index
-		puts "Action: Show"
+		print_header
+		puts "Action: Index"
+		print_footer
+	
 	end
 
+	def print_header
+		puts "<html>"
+		puts "	<head>"
+		puts "		<title> Connoisseur in the head</title>"
+		puts ""
+		puts "	</head>"
+		puts "	<body>"
+		puts ""
+	end
+
+	def print_footer
+		puts "	</body>"
+		puts "</html>"
+	end
 end
